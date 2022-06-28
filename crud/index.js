@@ -10,32 +10,32 @@ const firebaseConfig = {
     messagingSenderId: "522025067657",
     appId: "1:522025067657:web:a49330cb7d9d1cbca95258",
     measurementId: "G-JQXN6G9GH8"
-};
+  };
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-async function save(nomeTabela, id, dado) {
+async function save(tableName, id, data) {
     if (id) {
-        const referenceEntity = await setDoc(doc(db, nomeTabela, id), dado);
+        const referenceEntity = await setDoc(doc(db, tableName, id), data);
         const savedData = {
-            ...dado,
+            ...data,
             id: id
         }
         return savedData;
     } else {
-        const referenceEntity = await addDoc(collection(db, nomeTabela), dado);
+        const referenceEntity = await addDoc(collection(db, tableName), data);
         const savedData = {
-            ...dado,
+            ...data,
             id: referenceEntity.id
         }
         return savedData;
     }
 }
 
-async function get(nomeTabela) {
-    const tableRef = collection(db, nomeTabela);
+async function get(tableName) {
+    const tableRef = collection(db, tableName);
 
     const q = query(tableRef);
 
@@ -53,8 +53,8 @@ async function get(nomeTabela) {
     return lista;
 }
 
-async function getById(nomeTabela, id) {
-    const docRef = doc(db, nomeTabela, id);
+async function getById(tableName, id) {
+    const docRef = doc(db, tableName, id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -65,8 +65,8 @@ async function getById(nomeTabela, id) {
 
 }
 
-async function remove(nomeTabela, id){
-    const dado = await deleteDoc(doc(db, nomeTabela, id));
+async function remove(tableName, id){
+    const dado = await deleteDoc(doc(db, tableName, id));
     return {
         message: `${id} deleted`
     }
