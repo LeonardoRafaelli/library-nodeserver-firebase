@@ -1,7 +1,6 @@
-// const booksController = require('./books.controller')
 const {save, get, getById, remove} = require('../../crud/index');
 
-const getBooks = async (req, res) => {
+const getBooks = async () => {
     const books = await get("books");
     return books;
 };

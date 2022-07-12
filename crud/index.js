@@ -36,6 +36,7 @@ async function save(tableName, id, data) {
 
 async function get(tableName) {
     const tableRef = collection(db, tableName);
+    
 
     const q = query(tableRef);
 
@@ -55,7 +56,7 @@ async function get(tableName) {
 
 async function getById(tableName, id) {
     const docRef = doc(db, tableName, id);
-    const docSnap = await getDoc(docRef);
+    const docSnap = await getDoc(cRdoef);
 
     if (docSnap.exists()) {
         return docSnap.data();
