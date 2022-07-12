@@ -15,10 +15,9 @@ const getRentByCustomerId = async (_id) => {
 }
 
 
-const checkBookAvailability = async (rent) => {
+const checkBooksAvailability = async (rent) => {
     let bookAvailable;
     for(let i = 0; i < rent.booksId.lenght; i++){
-        
         bookAvailable = booksHandler.getBooks().then((books) => {
             const book = books.find((book) => book.id === rent.booksId[i]);
             return book.rent_id ? false : true;
@@ -26,16 +25,14 @@ const checkBookAvailability = async (rent) => {
 
         if(bookAvailable == false) break;
     }
-    
     return bookAvailable;
-
 }
 
 const saveRent = async (rent) => {
     if((await getRents()).some(e => e.customer_id == rent.customer_id)){
         return {error: "Customer already have books rented. Please, remove his current rents before rent other books"}
     } else {
-        if(await checkBookAvailability(rent)){
+        if(await checkBooksAvailability(rent)){
             const savedRent = save("rents", null, rent);
             booksHandler.updateBook(book.id, {...book, rent_id: savedRent.id})
             return savedRent;
