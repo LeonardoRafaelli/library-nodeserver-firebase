@@ -5,7 +5,11 @@ const booksHandler = require("./books.handler");
 
 router.get("/", async (req, res) => {
     const books = await booksHandler.getBooks();
-    res.json({books});
+    res.json(books);
+});
+
+router.get("/rented", async (req, res) => {
+    res.json(booksHandler.getRentedBooks());
 });
 
 router.get("/:id", async (req, res) => {

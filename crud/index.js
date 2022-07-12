@@ -56,7 +56,7 @@ async function get(tableName) {
 
 async function getById(tableName, id) {
     const docRef = doc(db, tableName, id);
-    const docSnap = await getDoc(cRdoef);
+    const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         return docSnap.data();

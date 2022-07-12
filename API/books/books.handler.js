@@ -5,6 +5,12 @@ const getBooks = async () => {
     return books;
 };
 
+const getRentedBooks = async() => {
+    const books = await get('books');
+    const rentedBooks = books.filter(e => e.rent_id);
+    return rentedBooks;
+}
+
 const getBookById = async (_id) => {
     const book = await getById("books", _id);
     return book;
@@ -28,6 +34,7 @@ const removeBook = async (_id) => {
 module.exports = {
     getBooks,
     getBookById,
+    getRentedBooks,
     saveBook,
     removeBook,
     updateBook
