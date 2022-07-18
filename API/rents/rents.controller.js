@@ -12,6 +12,7 @@ router.get("/:id", async (req, res) => {
     res.json(await rentsHandler.getRentByCustomerId(req.params.id));
 });
 
+//Body é o id do cliente e o array de ids dos livros
 router.post("/", async (req, res) => {
     res.json(await rentsHandler.saveRent(req.body));
 });
