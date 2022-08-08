@@ -25,6 +25,7 @@ const updateBook = async (_id, book) => {
 
 const saveBook = async (book) => {
     const authors = book.authors;
+    if(!authors) return {erro: "The book has to have an author"}
     delete book.authors;
     const savedBook = await save("books", null, book);
     for(let author of authors){
