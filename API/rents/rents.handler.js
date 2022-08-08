@@ -61,7 +61,7 @@ const saveRent = async (rent) => {
         return { error: "Customer already have books rented. Please, remove his current rents before rent other books" }
 
     } else {
-
+        // if
         if (checkedBooksAvailability === undefined) {
             //if everything is right, it's gonna register a new rent
             const savedRent = await save("rents", null, rent);

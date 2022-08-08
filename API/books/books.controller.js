@@ -16,6 +16,13 @@ router.get("/:id", async (req, res) => {
     res.json(await booksHandler.getBookById(req.params.id));
 });
 
+// {
+//     "name": "123",
+//     "number_pages": 123,
+//     "publisher_id": "123",
+//     "authors": ["123", "123"]
+// }
+
 router.post("/", async (req, res) => {
     res.json(await booksHandler.saveBook(req.body));
 });
